@@ -4,7 +4,7 @@ Created a simple "chat"-like facility that enables someone at one terminal (or X
 
 # Process Structure
 This program is done using pthreads, a kernel-level thread implementation for LINUX. As you may or may not know, pthreads allows you to create any number of threads inside one UNIX process. All threads running in the same UNIX process share memory (which means pointers valid for one thread are valid in another thread) and also have access to semaphores (mutexes) and the ability to use conditional signal/wait to synchronize their actions in relation to each other. UNIX itself also allows you to create multiple processes. Communication between UNIX processes can be done using something called "datagram sockets" which use a protocol called UDP (universal datagram protocol).
-In this program, we will be dealing with processes/threads on two levels. First, we will have two UNIX processes. Each one is started by one of the people who want to talk (as a result of executing s-talk). Second, within each s-talk process a pthreads environment will be running four threads:
+In this program, we deal with processes/threads on two levels. First, we will have two UNIX processes. Each one is started by one of the people who want to talk (as a result of executing s-talk). Second, within each s-talk process a pthreads environment will be running four threads:
 
 - One of the threads does nothing other than await input from the keyboard (keythread.c)
 - The other thread does nothing other than await a UDP datagram (recvthread.c)
